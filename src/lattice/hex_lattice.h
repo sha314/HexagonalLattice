@@ -1,0 +1,8 @@
+//
+// Created by shahnoor on 9/15/18.
+//
+
+#ifndef HEXAGONALLATTICE_HEX_LATTICE_H
+#define HEXAGONALLATTICE_HEX_LATTICE_H
+
+#endif //HEXAGONALLATTICE_HEX_LATTICE_H
