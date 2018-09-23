@@ -12,28 +12,41 @@ HexagonalLattice::HexagonalLattice(size_t length)
         : _length{length}
 {
     _vertices.resize(length);
+    _h_edges.resize(_length);
+    _v_edges.resize(_length);
+    _d_edges.resize(_length);
+    size_t r, c;
     for(size_t i{}; i < _length; ++i){
         _vertices[i].resize(_length);
+        _h_edges[i].resize(_length);
+        _v_edges[i].resize(_length);
+        _d_edges[i].resize(_length);
+
         for(size_t j{}; j < _length; ++j){
             _vertices[i][j] = {i, j};
+            /*
+            * for any vertex (a,b) the six neighbors are
+            * on the same x axis    -> {(a-1,b)     , (a+1, b)  } edges go rightward
+            * on the same y axis    -> {(a, b-1)    , (a, b+1)  } edges go upward
+            * on the diagonal axis  -> {(a-1, b-1)  , (a+1, b+1)} edges go upward diagonally
+             *
+            */
+            // current vertex connection with right vertex by currect vertex index
+            r = (j + 1) % _length; // so that negative is avoided and periodicity is preserved
+            c = i;
+            _h_edges[i][j] = Edge(_vertices[i][j], Vertex(r, c));
+
+            // current vertex connection with top vertex by currect vertex index
+            r = j;
+            c = (i + 1) % _length;
+            _v_edges[i][j] = Edge(_vertices[i][j], Vertex(r, c));
+            // current vertex connection with diagonally top vertex by currect vertex index
+            r = (j + 1) % _length; // so that negative is avoided and periodicity is preserved
+            c = (i + 1) % _length;
+            _d_edges[i][j] = Edge(_vertices[i][j], Vertex(r, c));
         }
     }
-    size_t center = _length / 2;
-    std::vector<Vertex> surface, tmp;
-    surface.push_back({center, center});
-    for(size_t r{}; r < center; ++r){
-        cout << surface.size() << endl;
-        for(size_t s{}; s < surface.size() ;++s){
-            auto srroundings = get_6_srroundings(surface[s]);
-            for(size_t k{}; k < srroundings.size(); ++k) {
-                // todo connect only if it is not present
-                _edges.push_back({surface[s], srroundings[k]});
-//                _edges.insert({surface[s], srroundings[k]});
-                tmp.push_back(srroundings[k]);
-            }
-        }
-        surface = tmp; // new surface
-    }
+
 
 
 }

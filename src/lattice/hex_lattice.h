@@ -10,14 +10,13 @@
 #include "vertex.h"
 #include "edge.h"
 
-/**
- *
- */
+
 class HexagonalLattice{
     size_t _length;
     std::vector<std::vector<Vertex>> _vertices;
-//    std::vector<std::vector<Edge>> _edges;
-    std::vector<Edge> _edges;
+    std::vector<std::vector<Edge>> _h_edges; // horizontal
+    std::vector<std::vector<Edge>> _v_edges; // vertical
+    std::vector<std::vector<Edge>> _d_edges; // diagonal
 
 public:
     ~HexagonalLattice() = default;

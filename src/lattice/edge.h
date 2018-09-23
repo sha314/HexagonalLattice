@@ -7,6 +7,7 @@
 #ifndef HEXAGONALLATTICE_EDGE_H
 #define HEXAGONALLATTICE_EDGE_H
 
+
 class Edge{
 public:
     using value_type = size_t;
