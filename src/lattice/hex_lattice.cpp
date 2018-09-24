@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <array>
+#include <iomanip>
 #include "hex_lattice.h"
 using namespace std;
 
@@ -52,13 +53,54 @@ HexagonalLattice::HexagonalLattice(size_t length)
 }
 
 void HexagonalLattice::view() {
-    for(size_t r{0}; r < _length; ++r){
+    if(_length > 99){
+        cout << "cannot display larger length than 99 on the console" << endl;
+        return;
+    }
+    cout << "each edge connects the currect vertex with the increasing index vertex" << endl;
+    cout << "|------------------------------------|" << endl;
+    cout << "|-vertex------------horizontal edge--|" << endl;
+    cout << "|-vertical edge-----diagonal edge----|" << endl;
+    cout << "|------------------------------------|" << endl;
+
+
+    cout << "  | ";
+    for(size_t c{}; c < _length;++c){
+        cout << std::setw(3) << c << "     | ";
+    }
+    cout << endl;
+
+//    cout << "__|_";
+//    for(size_t c{}; c < _length;++c){
+//        cout << "________|_";
+//    }
+//    cout << endl;
+    print_h_line();
+    for(size_t r{}; r < _length; ++r){
+        cout << std::setw(2) << r << "|";
         for(size_t c{}; c < _length;++c){
-            cout << r << ',' << c;
+            cout << std::setw(3) << _vertices[r][c].getID() << "  "
+                 << std::setw(3) << _h_edges[r][c].getID() << " |";
+
         }
         cout << endl;
+        cout << "  |";
+        for(size_t c{}; c < _length;++c) {
+            cout << std::setw(3) << _v_edges[r][c].getID() << "  "
+                 << std::setw(3) << _d_edges[r][c].getID() << " |";
+        }
+        cout << endl;
+        print_h_line();
     }
 
+}
+
+void HexagonalLattice::print_h_line() const {
+    cout << "__|_";
+    for(size_t c{}; c < _length; ++c){
+            cout << "________|_";
+        }
+    cout << endl;
 }
 
 std::array<Vertex, 6> HexagonalLattice::get_6_srroundings(const Vertex &vtx) {

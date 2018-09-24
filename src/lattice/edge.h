@@ -14,7 +14,7 @@ public:
 
 private:
     Vertex _vtx1, _vtx2;
-
+    int _id{-1};
 public:
     ~Edge() = default;
     Edge() = default;
@@ -25,7 +25,8 @@ public:
     Edge(Vertex vtx1, Vertex vtx2);
     Vertex get_vertex_a() const { return _vtx1;}
     Vertex get_vertex_b() const { return _vtx2;}
-
+    void setID(int id) {_id = id;}
+    int getID() const { return _id;}
     friend std::ostream&operator<<(std::ostream& os, const Edge& edg);
 
 };

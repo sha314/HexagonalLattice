@@ -26,5 +26,6 @@ public:
     static size_t maxVertex(size_t n) {return 1 + 3*n*(1+n);}
     void view();
 
+    void print_h_line() const;
 };
 #endif //HEXAGONALLATTICE_HEX_LATTICE_H

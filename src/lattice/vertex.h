@@ -16,6 +16,7 @@ public:
 private:
     bool _initiated{false};
     value_type _a,_b;
+    int _id{-1};
 public:
     ~Vertex() = default;
     Vertex() = default;
@@ -28,6 +29,8 @@ public:
 
     value_type get_a() const { return _a;}
     value_type get_b() const { return _b;}
+    void setID(int id) {_id = id;}
+    int getID() const { return _id;}
 
     friend std::ostream&operator<<(std::ostream& os, const Vertex& vtx);
 

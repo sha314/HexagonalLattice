@@ -21,11 +21,11 @@ int main(int argc, char* argv[]){
     cout << getCurrentTime() << endl;
     cout << "main program started " << endl;
 
-//    HexagonalLattice hl(5);
-//    hl.view();
-    for(size_t i{}; i < 5 ; ++i) {
-        cout << HexagonalLattice::maxVertex(i) << endl;
-    }
+    HexagonalLattice hl(5);
+    hl.view();
+//    for(size_t i{}; i < 5 ; ++i) {
+//        cout << HexagonalLattice::maxVertex(i) << endl;
+//    }
 
     cout << "Program Ended" << endl;
     return 0;
